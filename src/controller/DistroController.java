@@ -28,15 +28,15 @@ public class DistroController {
 				String linha = buffer.readLine();
 				String[] separador;
 
-				while (nome == null && versao == null) {
+				while (linha != null) {
 					if (linha.contains("NAME")) {
 						separador = linha.split("=");
 						nome = separador[1];
-					} else if (linha.contains("VERSION=")) {
+						separador = null;
+					} else if (linha.contains("VERSION_ID")) {
 						separador = linha.split("=");
 						versao = separador[1];
-						separador = versao.split(" ");
-						versao = separador[0];
+						break;
 					}
 					linha = buffer.readLine();
 				}
